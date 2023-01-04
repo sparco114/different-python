@@ -22,7 +22,7 @@ y = point[1]
 d = (x ** 2 + y ** 2) ** .5
 result = d < radius
 
-#print(d, radius)
+# print(d, radius)
 print('2 - Точка 1 внутри круга: ', result)
 
 # где 23 - координата х, 34 - координата у
@@ -55,5 +55,3 @@ print('3 - Точка 2 внутри круга: ', result2)
 # 77777.7777
 # False
 # False
-
-

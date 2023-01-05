@@ -31,6 +31,32 @@ store = {
     ],
 }
 
+chair_quantity = store[goods['Стул']][0]['quantity'] + store[goods['Стул']][1]['quantity'] + store[goods['Стул']][
+    2]['quantity']
+chair_coast = store[goods['Стул']][0]['quantity'] * store[goods['Стул']][0]['price'] + store[goods['Стул']][1][
+    'quantity'] * store[goods['Стул']][1]['price'] + store[goods['Стул']][2]['quantity'] * store[goods['Стул']][2][
+    'price']
+print(f'Стул -  {chair_quantity} шт, стоимость - {chair_coast} руб.')
+
+
+table_quantity = (store[goods['Стол']][0]['quantity']) + (store[goods['Стол']][1]['quantity'])
+table_coast = (store[goods['Стол']][0]['quantity']) * (store[goods['Стол']][0]['price']) + (store[goods['Стол']][1][
+    'quantity']) * (store[goods['Стол']][1]['price'])
+print(f'Стол -  {table_quantity} шт, стоимость - {table_coast} руб.')
+
+
+sofa_quantity = store[goods['Диван']][0]['quantity'] + store[goods['Диван']][1]['quantity']
+sofa_coast = (store[goods['Диван']][0]['quantity']) * (store[goods['Диван']][0]['price']) + (store[goods['Диван']][
+    1]['quantity']) * (store[goods['Диван']][1]['price'])
+print(f'Диван -  {sofa_quantity} шт, стоимость - {sofa_coast} руб.')
+
+# lamp_quantity = store[goods['Лампа']][0]['quantity']
+# lamp_coast = (store[goods['Лампа']][0]['price']) * lamp_quantity
+# print(f'Лампа -  {lamp_quantity} шт, стоимость - {lamp_coast} руб.')
+
+
+
+
 # Рассчитать на какую сумму лежит каждого товара на складе
 # например для ламп
 

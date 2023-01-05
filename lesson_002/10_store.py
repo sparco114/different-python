@@ -36,6 +36,7 @@ chair_quantity = store[goods['Стул']][0]['quantity'] + store[goods['Стул
 chair_coast = store[goods['Стул']][0]['quantity'] * store[goods['Стул']][0]['price'] + store[goods['Стул']][1][
     'quantity'] * store[goods['Стул']][1]['price'] + store[goods['Стул']][2]['quantity'] * store[goods['Стул']][2][
     'price']
+
 print(f'Стул -  {chair_quantity} шт, стоимость - {chair_coast} руб.')
 
 

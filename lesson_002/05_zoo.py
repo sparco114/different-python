@@ -7,12 +7,14 @@ zoo = ['lion', 'kangaroo', 'elephant', 'monkey', ]
 
 # посадите медведя (bear) между львом и кенгуру
 #  и выведите список на консоль
-# TODO здесь ваш код
+zoo.insert(1, 'BEAR')
+print(zoo)
 
 # добавьте птиц из списка birds в последние клетки зоопарка
 birds = ['rooster', 'ostrich', 'lark', ]
 #  и выведите список на консоль
-# TODO здесь ваш код
+zoo.extend(birds)
+print(zoo)
 
 # уберите слона
 #  и выведите список на консоль

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from calendar import calendar
 
 # (if/elif/else)
 
@@ -12,3 +13,10 @@ month = int(user_input)
 print('Вы ввели', month)
 
 # TODO здесь ваш код
+mon = {1: 31, 2: 28, 3: 31, 4: 30}
+if 1 < month < 12:
+    num = mon[month]
+    print('В этом месяце', num, 'дней')
+else:
+    print('Такого месяца нет')
+

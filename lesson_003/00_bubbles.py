@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import random
 
 import simple_draw as sd
 
@@ -51,8 +52,10 @@ for y in range(100, 400, 100):
 for x in range(100):
     point = sd.random_point()
     color = sd.random_color()
+    # step = sd.random_number(5, 10)
+    step = random.randint(5, 10)
 
-    bubble(poi=point, col=color, rad=50, ste=5)
+    bubble(poi=point, col=color, rad=50, ste=step)
 
 
 sd.pause()

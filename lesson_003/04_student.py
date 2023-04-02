@@ -11,4 +11,15 @@
 
 educational_grant, expenses = 10000, 12000
 
-# TODO здесь ваш код
+res = expenses
+mon = 1
+while mon < 10:
+    expenses = expenses + (expenses * 0.03)
+    res += expenses
+    mon += 1
+
+print(res)
+
+itog = res - (educational_grant * 10)
+
+print(f'Студенту надо попросить {round(itog, 2)} рублей')

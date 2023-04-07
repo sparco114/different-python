@@ -9,6 +9,7 @@ packages = [{include = "shandrin_hub"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 simple-draw = "^2.8.0"
+termcolor = "^2.2.0"
 
 
 [build-system]

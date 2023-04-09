@@ -10,6 +10,7 @@ packages = [{include = "shandrin_hub"}]
 python = "^3.10"
 simple-draw = "^2.8.0"
 termcolor = "^2.2.0"
+pandas = "^2.0.0"
 
 
 [build-system]

@@ -17,6 +17,7 @@ class House:
 class People:
     earn_money = 0
     ate_food = 0
+    coats = 0
 
     def __init__(self, name, house):
         self.name = name
@@ -58,7 +59,7 @@ class Husband(People):
         self.house.dirt += 2.5
         if self.fullness <= 30:
             self.eat()
-        elif self.house.money <= 150:
+        elif self.house.money <= 300:
             self.work()
         else:
             self.gaming()
@@ -100,7 +101,7 @@ class Wife(People):
             self.shopping()
         elif self.happiness <= 30:
             self.buy_fur_coat()
-        elif self.house.dirt >= 80:
+        elif self.house.dirt >= 90:
             self.clean_house()
         elif cube == 1:
             self.buy_fur_coat()
@@ -108,7 +109,6 @@ class Wife(People):
             self.eat()
         elif cube == 3:
             self.shopping()
-
 
     def shopping(self):
         if self.house.money >= 70:
@@ -125,6 +125,7 @@ class Wife(People):
             self.happiness += 60
             self.house.money -= 350
             self.fullness -= 10
+            People.coats += 1
         else:
             print('Нет денег на шубу')
 
@@ -132,6 +133,7 @@ class Wife(People):
         print(f'{self.name} сделала уборку')
         self.house.dirt -= 100
         self.fullness -= 10
+        self.happiness -= 10
 
 
 home = House()
@@ -151,3 +153,4 @@ for day in range(1, 366):
 
 cprint(f'Заработано денег {People.earn_money}', color='black')
 cprint(f'Съедено еды {People.ate_food}', color='black')
+cprint(f'Куплено шуб {People.coats}', color='black')

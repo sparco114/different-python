@@ -22,4 +22,50 @@
 # - поле возраст НЕ является числом от 10 до 99: ValueError
 # Вызов метода обернуть в try-except.
 
-# TODO здесь ваш код
+#
+class NotNameError(Exception):
+
+    def __init__(self, input_data):
+        self.input_data = input_data
+
+    def __str__(self):
+        return f'Имя содержит не только буквы'
+
+
+class NotEmailError(Exception):
+
+    def __init__(self, input_data):
+        self.input_data = input_data
+
+    def __str__(self):
+        return f'Неверно указан email'
+
+
+def check_line(new_line):
+    new_line = new_line[:-1].split(" ")
+    if len(new_line) != 3:
+        raise ValueError(f'Не все поля заполнены')
+    else:
+        if not new_line[0].isalpha():
+            raise NotNameError(new_line)
+        if not (('@' in new_line[1]) and ('.' in new_line[1])):
+            raise NotEmailError(new_line)
+        if not (10 <= int(new_line[2]) <= 99):
+            raise ValueError(f'Некорректно указан возраст')
+
+
+with open('registrations.txt', mode='r') as ff, open('reg_error.txt', mode='a', encoding='utf-8') as outf:
+    err_count = 0
+    for line in ff:
+        try:
+            check_line(line)
+        except NotNameError as exc:
+            outf.write(f'{exc} for {line}')
+            err_count += 1
+        except NotEmailError as exc:
+            outf.write(f'{exc} for {line}')
+            err_count += 1
+        except ValueError as exc:
+            outf.write(f'{exc} for {line}')
+            err_count += 1
+    outf.write(f'ERRORS: {err_count}')

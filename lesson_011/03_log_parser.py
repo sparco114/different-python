@@ -30,6 +30,8 @@ def parse_nok():
                     prev_date = date
         if prev_date:
             yield prev_date, res[prev_date]
+        else:
+            raise StopIteration
 
 
 grouped_events = parse_nok()

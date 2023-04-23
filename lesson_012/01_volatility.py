@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+from pprint import pprint
 
 
 # Описание предметной области:
@@ -65,12 +67,48 @@
 #
 # Для плавного перехода к мультипоточности, код оформить в обьектном стиле, используя следующий каркас
 #
-# class <Название класса>:
-#
-#     def __init__(self, <параметры>):
-#         <сохранение параметров>
-#
-#     def run(self):
-#         <обработка данных>
+class TradeStatistic:
 
-# TODO написать код в однопоточном/однопроцессорном стиле
+    def __init__(self, path):
+        self.path = path
+
+    def _take_filenames(self):
+        for dirpath, dirname, filenames in os.walk(self.path):
+            return filenames
+
+    def run(self):
+        no_zero_volat, zero_volat = self._files_scaner()
+        zero_volat.sort()
+        no_zero_volat.sort(key=lambda x: x[1])
+        print('Максимальная волатильность:')
+        for i in range(1, 4):
+            print(f'{no_zero_volat[-i][0]} - {no_zero_volat[-i][1]} %')
+        print('Минимальная волатильность:')
+        for i in range(3):
+            print(f'{no_zero_volat[i][0]} - {no_zero_volat[i][1]} %')
+        print('Нулевая волатильность:')
+        print(str(zero_volat))
+
+    def _files_scaner(self):
+        files = self._take_filenames()
+        zero_volat = []
+        no_zero_volat = []
+        for file in files:
+            with open(file=os.path.join(folder_name, file), mode='r', encoding='utf-8') as ff:
+                res = ff.readlines()
+                prices = []
+                for line in res[1:len(res)]:
+                    line = line.split(',')
+                    prices.append(float(line[2]))
+                average_price = (max(prices) + min(prices)) / 2
+                volatility = round((((max(prices) - min(prices)) / average_price) * 100), 2)
+                if volatility == 0:
+                    zero_volat.append((line[0]))
+                else:
+                    no_zero_volat.append((line[0], volatility))
+        return no_zero_volat, zero_volat
+
+
+folder_name = './trades/'
+one_file = TradeStatistic(folder_name)
+one_file.run()

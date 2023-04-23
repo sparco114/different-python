@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from pprint import pprint
+import time
 
 
 # Описание предметной области:
@@ -72,10 +72,6 @@ class TradeStatistic:
     def __init__(self, path):
         self.path = path
 
-    def _take_filenames(self):
-        for dirpath, dirname, filenames in os.walk(self.path):
-            return filenames
-
     def run(self):
         no_zero_volat, zero_volat = self._files_scaner()
         zero_volat.sort()
@@ -108,7 +104,30 @@ class TradeStatistic:
                     no_zero_volat.append((line[0], volatility))
         return no_zero_volat, zero_volat
 
+    def _take_filenames(self):
+        for dirpath, dirname, filenames in os.walk(self.path):
+            return filenames
+
+
+def time_track(func):
+    def surrogate(*args, **kwargs):
+        started_at = time.time()
+
+        result = func(*args, **kwargs)
+
+        ended_at = time.time()
+        elapsed = round(ended_at - started_at, 4)
+        print(f'Функция работала {elapsed} секунд(ы)')
+        return result
+
+    return surrogate
+
+
+@time_track
+def main(folder):
+    one_file = TradeStatistic(folder)
+    one_file.run()
+
 
 folder_name = './trades/'
-one_file = TradeStatistic(folder_name)
-one_file.run()
+main(folder_name)

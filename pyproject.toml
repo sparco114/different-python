@@ -12,6 +12,7 @@ simple-draw = "^2.8.0"
 termcolor = "^2.2.0"
 pandas = "^2.0.0"
 requests = "^2.28.2"
+pillow = "^9.5.0"
 
 
 [build-system]

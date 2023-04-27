@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import sys
+
 
 # Вас взяли на работу в молодой стартап. Идея стартапа - предоставлять сервис расчета результатов игр.
 # Начать решили с боулинга, упрощенной версии.
@@ -31,7 +33,35 @@
 
 # TODO тут ваш код
 
+received_result = sys.argv[1]
+import logging
+
+log = logging.getLogger('test_get_score.log')
+format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+log.setLevel(logging.DEBUG)
+handler = logging.FileHandler(filename='test_get_score')
+handler.setFormatter(format)
+log.addHandler(handler)
+
+
+def get_score(game_result):
+    if 4 < len(game_result) < 2:
+        log.error("ValueError---('Неверное количество символов')")
+        raise ValueError('Неверное количество символов')
+    if 'X' in game_result:
+        game_result = [int(i.replace('X', '20')) for i in game_result]
+        log.info('with X')
+    else:
+        game_result = [int(i) for i in game_result]
+        log.info('without X')
+    log.debug('all right')
+    return sum(game_result)
+
+
+
+# get_score('852')
+get_score(game_result=received_result)
+
 # При написании кода помнить, что заказчик может захотеть доработок и новых возможностей...
 # И, возможно, вам пригодится паттерн проектирования "Состояние",
 #   см https://clck.ru/Fudd8 и https://refactoring.guru/ru/design-patterns/state
-
